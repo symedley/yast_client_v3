@@ -1,5 +1,6 @@
 # Google
 google-services.json
+google-services*.json
 GoogleService-Info.plist
 Assets.xcassets
 ios/Runner/AppDelegate.m
