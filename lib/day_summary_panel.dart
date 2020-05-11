@@ -140,8 +140,10 @@ class _DaySummaryPanelState extends State {
                     .snapshots(),
                 builder: (context, snapshot) {
                   // Loading...
-                  if ((!snapshot.hasData) || ((theSavedStatus.projects?.isEmpty)??false))
+                  debugPrint('starttime {$_beginDaySeconds}');
+                  if ((!snapshot.hasData) || ((theSavedStatus.projects?.isEmpty)??false)) {
                     return const Text('Loading...');
+                  }
 
                   // FIXING the mess
                   // copy the projects map into a map to DurationProjects.

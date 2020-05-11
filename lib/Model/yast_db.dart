@@ -1,10 +1,10 @@
 
 /// Just organizing hte database stuff
 class YastDb {
-  static const DbProjectsTableName = "projects_";
-  static const DbFoldersTableName = "folders_";
+  static const DbProjectsTableName = "projects";
+  static const DbFoldersTableName = "folders";
   static const DbRecordsTableName = "records_";
-  static const DbIdToProjectTableName = 'idToProjectMap_';
+  static const DbIdToProjectTableName = 'idToProjectMap';
 
 
   static const int BATCHLIMIT = 500;

@@ -7,8 +7,9 @@ class Constants {
   // As of 12/2/18, the candybarmath yast account has fake records
   // going out to June 2019, so this will be rarely needed now.
   static const bool doCreateFakeRecords = true;
-  static const String referenceDay = '2018-11-27';
-  static const String firstFakeRecordsDay = '2018-02-01';
+//  static const String referenceDay = '2018-11-27';
+  static const String referenceDay = '2020-05-10';
+  static const String firstFakeRecordsDay = '2020-05-12';
   static const int numberOfFakeDaysToMake = 1;
   static const int fakeDayMorningStartTime = 7;
 

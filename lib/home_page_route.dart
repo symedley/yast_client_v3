@@ -69,7 +69,7 @@ class _MyHomePageState extends State<HomePageRoute> {
       _retrieveAllFolders().then((_) {
         _retrieveRecords()
             .then((_) {
-          _createFakes();
+              if (widget.theSavedStatus.currentRecords == null) _createFakes();
         });
       });
     });
@@ -149,6 +149,7 @@ class _MyHomePageState extends State<HomePageRoute> {
   /// target dates.
   Future<void> _createFakes() async {
     YastApi api = YastApi.getApi();
+    debugPrint('==========_createFakes');
     //
     // DEBUG: create future fake records
     DateTime startReferenceDay = DateTime.parse(Constants.referenceDay);
