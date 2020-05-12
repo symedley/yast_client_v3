@@ -25,6 +25,10 @@ Future<Map<String, Record>> createFutureRecordsFromReferenceRecs(
     debugPrint("createFutureRecords called with null collection");
     return null;
   }
+  if (records.isEmpty ) {
+    debugPrint("createFutureRecords called with empty collection");
+    return null;
+  }
   DateTime startReferenceDay = DateTime.parse(Constants.referenceDay);
   DateTime endReferenceDay = DateTime(
       startReferenceDay.year,
@@ -45,23 +49,23 @@ Future<Map<String, Record>> createFutureRecordsFromReferenceRecs(
   Map<String, Record> batchOfNewFakeRecords = new Map();
   Map<String, Record> newFakeRecords = new Map();
   DateTime fakeDay = DateTime.now();//local time zone
-//  DateTime fakeDay = DateTime.parse(Constants.firstFakeRecordsDay);//local time zone
   // fakeDay is in local time
   fakeDay = DateTime(fakeDay.year, fakeDay.month, fakeDay.day );
   DateTime fakeTime;
-  var rng = new Random();
+  var rng = new Random(); // used to generate random numbers inside the loop
   int recordCount = 0;
   while (dayCount < Constants.numberOfFakeDaysToMake) {
     //does this modify fakeDAte?
     fakeTime = fakeDay.add(new Duration(hours: Constants.fakeDayMorningStartTime));
 
     // This is unnecessary because the putRecordsInDatabase method
-    // chunks this into blocks of ~ 500 for you.
+    // chunks this into blocks of ~ 500 already
 //    if (((recordCount % YastDb.FAKERECORDSBATCHLIMIT)==0) && (recordCount != 0)) {
 //      await putRecordsInDatabase(batchOfNewFakeRecords);
 //      newFakeRecords.addAll(batchOfNewFakeRecords);
 //      batchOfNewFakeRecords.clear();
 //    }
+
     recsToCopy.forEach((rec) {
       recordCount++;
       Record fakeRecord = Record.clone(rec);
@@ -69,10 +73,20 @@ Future<Map<String, Record>> createFutureRecordsFromReferenceRecs(
       startIdNumber++;
       fakeRecord.startTime = fakeTime;
       fakeRecord.startTimeStr = localDateTimeToYastDate(fakeRecord.startTime);
-      int randomInt = (rng.nextInt(6) -3 ) * 5;
-      Duration randomDur = Duration(minutes: randomInt);
-      fakeTime = fakeTime.add(rec.duration());
-      fakeTime = fakeTime.add(randomDur);
+      // records to shorten have project id s 25004182,25004191, 25004239, 25004242
+      if ((fakeRecord.projectId.compareTo("25004182") == 0)
+            || ( fakeRecord.projectId.compareTo("25004191") == 0)
+            || ( fakeRecord.projectId.compareTo("25004239") == 0)
+            || ( fakeRecord.projectId.compareTo("25004242") == 0))
+      {
+        debugPrint(' shortening duration on record {$fakeRecord.id}');
+        fakeTime = fakeTime.add (Duration(minutes: 15));
+      } else {
+        int randomInt = (rng.nextInt(6) - 3) * 5;
+        Duration randomDur = Duration(minutes: randomInt);
+        fakeTime = fakeTime.add(rec.duration());
+        fakeTime = fakeTime.add(randomDur);
+      }
       fakeRecord.endTime = fakeTime;
       fakeRecord.endTimeStr = localDateTimeToYastDate(fakeRecord.endTime);
       String fakeKey = fakeRecord.id + (dayCount.toString());
@@ -110,8 +124,16 @@ Future<Map<String, Record>> createFutureRecordsFromReferenceRecs(
 /// of data for debugging purposes. See Constants for reference and
 /// target dates.
 ///
-Future<void> createFakes(theSavedStatus, int startIdNumber ) async {
+Future<void> createFakes(theSavedStatus, {int startIdNumber} ) async {
   debugPrint('========== createFakes');
+
+  if ((startIdNumber == null)) {
+    try {
+      startIdNumber = int.parse(theSavedStatus.currentRecords.keys.last) + 1;
+    } catch (e) {
+      startIdNumber = 10000000;
+    }
+  }
   //
   // DEBUG: create future fake records
   DateTime startReferenceDay = DateTime.parse(Constants.referenceDay);
@@ -138,19 +160,6 @@ Future<void> createFakes(theSavedStatus, int startIdNumber ) async {
     if ((startReferenceDay
         .compareTo((recordFromDb.startTime)) < 0) &&
         (endReferenceDay.compareTo(recordFromDb.startTime)) > 0) {
-      // Change the start and end times to be the same
-      // time of day but today.
-//      Duration whenInDay = recordFromDb.startTime.difference(startReferenceDay);
-      // will today be changed by calling add() or does it just generate a new object?
-//      DateTime newStartTime = today.add(whenInDay);
-//      recordFromDb.startTime = newStartTime;
-      // Warning: this is picking up records past the end of the reference day.
-//      whenInDay = recordFromDb.endTime.difference(startReferenceDay);
-//      DateTime newEndTime = today.add(whenInDay);
-//      recordFromDb.endTime = newEndTime;
-//      recordFromDb.startTimeStr = utilities.localDateTimeToYastDate(recordFromDb.startTime);
-//      recordFromDb.endTimeStr = utilities.localDateTimeToYastDate(recordFromDb.endTime);
-//      recordFromDb.copyVariablesIntoFieldmap();
       newRecords[recordFromDb.id] = recordFromDb;
     }
   } );
@@ -160,9 +169,6 @@ Future<void> createFakes(theSavedStatus, int startIdNumber ) async {
   Map<String, Record> newRecs = await createFutureRecordsFromReferenceRecs(newRecords, startIdNumber);
 
   // create the fake records should also store them in the database.
-//    widget.theSavedStatus.counterApiCallsStarted++;
-//    await api.yastStoreNewRecords(widget.theSavedStatus, newFakeRecords);
-//    widget.theSavedStatus.counterApiCallsCompleted++;
     theSavedStatus.currentRecords.addAll(newRecs);
 } // createFakes
 

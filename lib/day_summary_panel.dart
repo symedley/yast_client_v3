@@ -186,8 +186,7 @@ class _DaySummaryPanelState extends State {
                     }
                   });
                   if (theSavedStatus.currentRecords.isEmpty) { // NEW fakes
-                    debug_create.createFakes(theSavedStatus,
-                        int.parse( theSavedStatus.currentRecords.keys.last) + 1 );
+                    debug_create.createFakes(theSavedStatus);
                   }
 
                   //Sort the duration projects

@@ -3,7 +3,8 @@
 class YastDb {
   static const DbProjectsTableName = "projects";
   static const DbFoldersTableName = "folders";
-  static const DbRecordsTableName = "records_";
+  static const DbRecordsTableName = "records";
+//  static const DbRecordsTableName = "records_";
   static const DbIdToProjectTableName = 'idToProjectMap';
 
 
