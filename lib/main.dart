@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
         routes: routes,
         home: DefaultTabController(
           length: myTabs.length,
+          initialIndex: 1,
           child: Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(60.0),

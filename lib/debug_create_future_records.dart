@@ -88,7 +88,7 @@ Future<Map<String, Record>> createFutureRecordsFromReferenceRecs(
           fakeRecord.endTimeStr;
       fakeRecord.yastObjectFieldsMap[Record.FIELDSMAPISRUNNING] = '0';
       fakeRecord.yastObjectFieldsMap[Record.FIELDSMAPCOMMENT] =
-          'end time:${fakeTime.toString()} is fake record # $recordCount stored on ${today.toString()}';
+          'end time: ${fakeTime.toString()} is example record # $recordCount stored on ${today.toString()}';
       fakeRecord.comment =
           fakeRecord.yastObjectFieldsMap[Record.FIELDSMAPCOMMENT];
       debugPrint('fake rec: id:${fakeRecord.id} comment:${fakeRecord.comment}');

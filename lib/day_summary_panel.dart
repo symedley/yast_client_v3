@@ -185,11 +185,9 @@ class _DaySummaryPanelState extends State {
                           'Record ${recordFromDb.toString()} was NOT in range to be displayed. why?');
                     }
                   });
-                  if (true) { // NEW fakes
-//                    if (theSavedStatus.currentRecords.isEmpty) { // NEW fakes
+                  if (theSavedStatus.currentRecords.isEmpty) { // NEW fakes
                     debug_create.createFakes(theSavedStatus,
                         int.parse( theSavedStatus.currentRecords.keys.last) + 1 );
-                    //TODO now must add the durations in a separate loop...or maybe not. Should pop up in the stream after an interrupt from the database
                   }
 
                   //Sort the duration projects
