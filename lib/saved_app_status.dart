@@ -200,18 +200,20 @@ class SavedAppStatus {
       }
     }
 
-    if (project.name != null) {
-      if (projectNameToDuration[project.name] != null) {
-        projectNameToDuration[project.name] += duration;
-        projectIdToDuration[project.id] += duration;
-        projectIdToDurationProject[project.id].duration += duration;
-      } else {
-        // encountered a new project type?
-        // should it be added in the project duration map?
-        projectNameToDuration[project.name] = duration;
-        projectIdToDuration[project.id] = duration;
-        projectIdToDurationProject[project.id] =
-            new DurationProject(duration, project);
+    if (project != null) {
+      if (project.name != null) {
+        if (projectNameToDuration[project.name] != null) {
+          projectNameToDuration[project.name] += duration;
+          projectIdToDuration[project.id] += duration;
+          projectIdToDurationProject[project.id].duration += duration;
+        } else {
+          // encountered a new project type?
+          // should it be added in the project duration map?
+          projectNameToDuration[project.name] = duration;
+          projectIdToDuration[project.id] = duration;
+          projectIdToDurationProject[project.id] =
+          new DurationProject(duration, project);
+        }
       }
     }
   }

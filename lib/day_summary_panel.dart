@@ -14,6 +14,7 @@ import 'utilities.dart' as utilities;
 import 'yast_api.dart' ;
 import 'constants.dart';
 import 'duration_project.dart';
+import 'debug_create_future_records.dart' as debug_create;
 
 const double barTextEdgeInsets = 12.0;
 const double barEdgeInsets = 2.0;
@@ -184,6 +185,13 @@ class _DaySummaryPanelState extends State {
                           'Record ${recordFromDb.toString()} was NOT in range to be displayed. why?');
                     }
                   });
+                  if (true) { // NEW fakes
+//                    if (theSavedStatus.currentRecords.isEmpty) { // NEW fakes
+                    debug_create.createFakes(theSavedStatus,
+                        int.parse( theSavedStatus.currentRecords.keys.last) + 1 );
+                    //TODO now must add the durations in a separate loop...or maybe not. Should pop up in the stream after an interrupt from the database
+                  }
+
                   //Sort the duration projects
                   List<MapEntry<String, DurationProject>> sorted =
                       theSavedStatus.sortedProjectDurations();

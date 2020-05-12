@@ -129,10 +129,10 @@ Future<void> putRecordsInDatabase(Map<String, Record> recs,
 
     counter++;
   });
-  if (true) {
-    await batch.commit().timeout(Duration(seconds: Constants.HTTP_TIMEOUT));
-    debugPrint("====final store records count: $counter");
-  }
+//  if (true) {
+//    await batch.commit().timeout(Duration(seconds: Constants.HTTP_TIMEOUT));
+//    debugPrint("====final store records count: $counter");
+//  }
   debugPrint("============== total records count: $counter");
 
   await (((batch
