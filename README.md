@@ -1,8 +1,5 @@
 ﻿# yastclientv3
 
-Rebuilding yast client because v2 won&#x27;t build anymore.
-# yast_client_v2
-
 ***An app (both iOS and Android) that interacts with your yast.com account to display time management data and help fix common mistakes in your data.***
 
 This is a learning exercise for me. I created this project to teach myself Flutter, Dart, Firebase Cloudstore and using HTTP for basic API interaction.
