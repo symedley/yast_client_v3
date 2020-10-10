@@ -8,9 +8,9 @@ This is a learning exercise for me. I created this project to teach myself Flutt
 
 ## Functional Description
 ### What is Yast.com
-&#42;&#42;Yast is a time management tool. It's great. Try it out. Their web console works very well. Their Android app, however, leaves something to be desired. It's inefficient, won't work offline and lacks features.
+Yast is a time management tool.(&#42;&#42;) It's great. Try it out. Their web console works very well. Their Android app, however, leaves something to be desired. It's inefficient, won't work offline and lacks features.
 
-&#42;&#42;Unfortunately, Yast has shut down their API.
+(&#42;&#42;) Unfortunately, Yast has shut down their API.
 
 ### Yast Client v3
 An app that has some of the features that the official yast Android app lacks. My app is not a full featured client. At risk of sounding like a broken record, it is a *demo project* and *learning project*. 
