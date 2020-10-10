@@ -1,4 +1,4 @@
-﻿# yastclientv3
+﻿# yast_client_v3
 
 ***An app (both iOS and Android) that interacts with your yast.com account to display time management data and help fix common mistakes in your data.***
 
