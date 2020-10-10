@@ -9,12 +9,12 @@ This is a learning exercise for me. I created this project to teach myself Flutt
 ## Functional Description
 ### What is Yast.com
 Yast is a time management tool. It's great. Try it out. Their web console works very well. Their Android app, however, leaves something to be desired. It's inefficient, won't work offline and lacks features.
-### Yast Client v2
+### Yast Client v3
 An app that has some of the features that the official yast Android app lacks. My app is not a full featured client. At risk of sounding like a broken record, it is a *demo project* and *learning project*. 
 
 ## Getting Started
 
-To build yast_client_v2, you would clone or fork the project, use your IDE to import the flutter project and hook it up to a Firebase project for the database. However, I can't imagine why you would want to because, *it's just a demo app and a learning project.* There's almost certainly nothing here that would be applicable to other projects.
+To build yast_client_v3, you would clone or fork the project, use your IDE to import the flutter project and hook it up to a Firebase project for the database. However, I can't imagine why you would want to because, *it's just a demo app and a learning project.* There's almost certainly nothing here that would be applicable to other projects.
 
 ### Prerequisites
 
@@ -35,7 +35,7 @@ This assumes that you have flutter installed, which includes a Dart installation
 
 Clone the repo 
 ```
-git clone https://github.com/symedley/yast_client_v2.git
+git clone https://github.com/symedley/yast_client_v3.git
 ```
 Launch AndroidStudio, 'open project' and select the root folder of the cloned repo. This project depends on several packages. Get them by typing
 ```
